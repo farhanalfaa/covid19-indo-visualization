@@ -1,19 +1,44 @@
 ﻿# Visualisasi Data COVID19 pada Tiap Provinsi di Indonesia
 
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
 
 
 ## Getting Started
 
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
+Berikut ini merupakan instruksi dasar yang diperlukan untuk menjalankan program Visualisasi COVID19 di Tiap Daerah Indonesia dengan menggunakan Bokeh Library
 
 ### Prerequisites
 
-The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
+Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
+
+```
+ !pip install numpy
+ !pip install pandas
+ !pip install geopandas
+```
 
 ### Installing
 
-All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
+Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks editor (Jupyter Notebook) :
+
+```
+ import numpy as np
+ import pandas as pd
+ import geopandas as gpd
+```
+
+Selain itu juga, tambahkan beberapa extension dari library Bokeh seperti berikut:
+
+```
+from bokeh.plotting import figure, show
+from bokeh.io import output_notebook
+from bokeh.models.tools import HoverTool
+from bokeh.models import ColumnDataSource
+from bokeh.transform import dodge
+from bokeh.models import Panel, Tabs
+
+output_notebook()
+```
 
 ## Running the tests
 
@@ -21,13 +46,51 @@ You can rename the current file by clicking the file name in the navigation bar 
 
 ### Breakdown into end to end tests
 
+**Convert into Dictionary**
+
+```
+data = {'provinsi'    : df_provinsi['Provinsi_Asal'].tolist(),
+        'Kasus'       : df_provinsi['Kasus'].tolist(),
+        'Sembuh'      : df_provinsi['Sembuh'].tolist(),
+        'Meninggal'   : df_provinsi['Meninggal'].tolist()}
+
+source = ColumnDataSource(data=data)
+```
+**Setup vbar Glyphs**
+
+```
+p = figure(x_range=provinsi, y_range=(0, 1000), plot_height=500, plot_width=2000, title="Data Persebaran Virus COVID-19 di Indonesia", toolbar_location="left")
+
+p.vbar(x=dodge('provinsi', -0.25, range=p.x_range), top='Kasus', width=0.2, source=source,
+       color="#c9d9d3", legend_label="Kasus")
+
+p.vbar(x=dodge('provinsi',  0.0,  range=p.x_range), top='Sembuh', width=0.2, source=source,
+       color="#718dbf", legend_label="Sembuh")
+
+p.vbar(x=dodge('provinsi',  0.25, range=p.x_range), top='Meninggal', width=0.2, source=source,
+       color="#e84d60", legend_label="Meninggal")
+```
+
+**Setup Style Visualization**
+
+```
+p.x_range.range_padding = 0.01
+p.xgrid.grid_line_color = None
+p.legend.location = "top_left"
+p.legend.orientation = "horizontal"
+
+# Tick labels
+p.xaxis.major_label_text_font_size = '6pt'
+p.yaxis.major_label_text_font_size = '10pt'
+```
+
 ### Coding Style Tests
 
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
 
-## Bokeh Visualization
 
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
+## Geopandas Visualization
+
+
 
 ## Contributing
 
