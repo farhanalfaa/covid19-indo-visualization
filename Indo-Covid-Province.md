@@ -11,7 +11,7 @@ Berikut ini merupakan instruksi dasar yang diperlukan untuk menjalankan program 
 
 Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
 
-```
+```python
  !pip install numpy
  !pip install pandas
  !pip install geopandas
@@ -21,7 +21,7 @@ Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
 
 Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks editor (Jupyter Notebook) :
 
-```
+```python
  import numpy as np
  import pandas as pd
  import geopandas as gpd
@@ -29,7 +29,7 @@ Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks ed
 
 Selain itu juga, tambahkan beberapa extension dari library Bokeh seperti berikut:
 
-```
+```python
 from bokeh.plotting import figure, show
 from bokeh.io import output_notebook
 from bokeh.models.tools import HoverTool
@@ -42,13 +42,13 @@ output_notebook()
 
 ## Running the tests
 
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
+Berikut ini merupakan potongan source code untuk memudahkan memahami penjelasan mengenai tiap code yang diberikan
 
-### Breakdown into end to end tests
+### Bokeh All Province Visualization
 
 **Convert into Dictionary**
 
-```
+```python
 data = {'provinsi'    : df_provinsi['Provinsi_Asal'].tolist(),
         'Kasus'       : df_provinsi['Kasus'].tolist(),
         'Sembuh'      : df_provinsi['Sembuh'].tolist(),
@@ -58,7 +58,7 @@ source = ColumnDataSource(data=data)
 ```
 **Setup vbar Glyphs**
 
-```
+```python
 p = figure(x_range=provinsi, y_range=(0, 1000), plot_height=500, plot_width=2000, title="Data Persebaran Virus COVID-19 di Indonesia", toolbar_location="left")
 
 p.vbar(x=dodge('provinsi', -0.25, range=p.x_range), top='Kasus', width=0.2, source=source,
@@ -73,7 +73,7 @@ p.vbar(x=dodge('provinsi',  0.25, range=p.x_range), top='Meninggal', width=0.2, 
 
 **Setup Style Visualization**
 
-```
+```python
 p.x_range.range_padding = 0.01
 p.xgrid.grid_line_color = None
 p.legend.location = "top_left"
@@ -83,6 +83,28 @@ p.legend.orientation = "horizontal"
 p.xaxis.major_label_text_font_size = '6pt'
 p.yaxis.major_label_text_font_size = '10pt'
 ```
+
+**Add Hover Tools**
+
+```python
+hover = HoverTool()
+hover.tooltips = [
+    ("Jumlah Kasus", "@Kasus Pasien"),
+    ("Jumlah Sembuh", "@Sembuh Pasien"),
+    ("Jumlah Meninggal", "@Meninggal Pasien")]
+
+hover.mode = 'vline'
+
+p.add_tools(hover)
+```
+
+**Display Visualization**
+
+```
+show(p)
+```
+
+![Bokeh Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/bokeh_province.PNG)
 
 ### Coding Style Tests
 
