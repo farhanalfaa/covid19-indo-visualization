@@ -230,10 +230,10 @@ def visual_addoffset():
  
 ## [Part 2] COVID19 Visualization in Every Region in Indonesia
 
-Akan dilakukan visualisasi jumlah persebaran Penderita COVID19 pada tiap Provinsi di Indonesia yang melibatkan setidaknya 34 provinsi. Visualisasi nantinya akan ditampilkan dalam bentuk Data Geospasial yang memperlihatkan Wilayah Indonesia beserta Informasi mengenai rasio kematian yang diakibatkan oleh COVID19 dengan bantuan **Geopandas Library**
-
 #### Author :
 - Farhan Alfariqi (1301161770)
+
+Akan dilakukan visualisasi jumlah persebaran Penderita COVID19 pada tiap Provinsi di Indonesia yang melibatkan setidaknya 34 provinsi. Visualisasi nantinya akan ditampilkan dalam bentuk Data Geospasial yang memperlihatkan Wilayah Indonesia beserta Informasi mengenai rasio kematian yang diakibatkan oleh COVID19 dengan bantuan **Geopandas Library**
 
 ### Handle Dataset
 
@@ -430,8 +430,6 @@ for idx, row in df_join.iterrows():
 
 #### Author :
 - Fikhri Masri (1301164662)
-
-### Explanation
 
 Data Visualisasi adalah teknik menyajikan data secara visual melalui grafik, chart , peta agar tampilan menarik namun tetap informatif. Alasan ada nya data visualisasi adalah tidak lepas dari "kebosanan" dan "monoton" apabila data disajikan dalam bentuk baris dan kolom seperti dalam tabel tabel. Pada Kasus Covid-19 ASEAN Menampilkan Visualisasi:
 
