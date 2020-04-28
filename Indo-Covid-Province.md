@@ -218,6 +218,18 @@ df_join.plot(column=values, cmap='OrRd',
 
 ![Geopandas Region Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/geopandas_province.PNG)
 
+**Show Visualization with Label Names**
+```python
+df_join['coords'] = df_join['geometry'].apply(lambda x: x.representative_point().coords[:])
+df_join['coords'] = [coords[0] for coords in df_join['coords']]
+for idx, row in df_join.iterrows():
+    plt.annotate(s=row['Provinsi_Asal'],
+                 xy=row['coords'],
+                 horizontalalignment='center',
+                 fontsize=8,
+                 color='black')
+```
+
 ## Contributing
  - [**Taufik Fathurrahman**](https://github.com/taufikfathurahman)
  - [**Fikhri Masri**](https://github.com/fikhrimasri)
