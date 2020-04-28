@@ -1,4 +1,8 @@
-﻿# Visualisasi Data COVID19 pada Tiap Provinsi di Indonesia
+﻿# COVID19 Visualization in Every Region in Indonesia
+
+- Farhan Alfariqi    : 1301161770
+- Fikhri Masri       : 1301164662
+- Taufik Fathurahman : 1301160790
 
 COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
 
@@ -233,7 +237,7 @@ for idx, row in df_join.iterrows():
 ![Geopandas Region Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/geopandas_region_province_with_label.PNG)
 
 ## Contributing
- - [**Taufik Fathurrahman**](https://github.com/taufikfathurahman)
+ - [**Taufik Fathurahman**](https://github.com/taufikfathurahman)
  - [**Fikhri Masri**](https://github.com/fikhrimasri)
 
 ## Authors
