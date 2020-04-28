@@ -219,6 +219,8 @@ df_join.plot(column=values, cmap='OrRd',
 ![Geopandas Region Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/geopandas_province.PNG)
 
 ## Contributing
+ - [**Taufik Fathurrahman**](https://github.com/taufikfathurahman)
+ - [**Fikhri Masri**](https://github.com/fikhrimasri)
 
 ## Authors
  - **Farhan Alfariqi**
