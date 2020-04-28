@@ -1,5 +1,5 @@
 ﻿> Online README link : https://github.com/farhanalfaa/covid19-visualization/blob/master/README.md
-
+ 
 ##### Author:
 - Taufik Fathurahman (1301160790)
 - Farhan Alfariqi (1301161770)
@@ -7,13 +7,17 @@
 
 # COVID19 Visualization using Bokeh Library
 
-## [Part 1] The Daily Additional Number in Indonesia
-
-Akan dilakukan visalisasi dari pertambahan kasus COVID-19 perhari di Indonesia selama kurun waktu dua bulan, yaitu Maret sampai bulan April sekarang. Program akan memvisualisasikana kasus yang terkonfirmasi, kasus kematian, dan kasus sembuh. Visualisasi dibuat interaktif dengan menggunakan bantuan Library Bokeh.
+COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. 
 
 ### Getting Started
 
-Berikut ini merupakan instruksi dasar yang diperlukan untuk menjalankan program The Daily Additional Number in Indonesia dengan menggunakan Library Bokeh.
+Berikut ini merupakan rangkaian program yang menampilkan persebaran kasus COVID19 di Indonesia berdasarkan beragam kategori dengan menggunakan Bokeh Library untuk memudahkan proses visualisasi data. Rangkaian program tersebut akan membahas berikut :
+
+**1. [Part 1] Jumlah Pertumbuhan Harian Penderita COVID19 di Indonesia**
+
+**2. [Part 2] Jumlah Persebaran Penderita COVID19 di Tiap Daerah di Indonesia**
+
+**3. [Part 3] Jumlah Persebaran Penderita COVID19 dalam skala ASEAN**
 
 #### Prerequisites
 
@@ -25,6 +29,11 @@ Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
  pip install geopandas
 ```
 
+#### Built With
+
+* [Bokeh 2.0.2](https://docs.bokeh.org/)
+* [Geopandas 0.7.0](https://geopandas.org/)
+
 #### Installing
 
 Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks editor (Jupyter Notebook) :
@@ -32,15 +41,24 @@ Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks ed
 ```python
 import numpy as np
 import pandas as pd
-from bokeh.plotting import figure, show
+
+from bokeh.plotting import figure, show, Figure
 from bokeh.io import output_notebook
-from bokeh.models import ColumnDataSource, HoverTool, CheckboxGroup, CustomJS, Panel, Tabs, Slider
-from bokeh.transform import dodge
-from bokeh.layouts import row
-from bokeh.plotting import Figure
-from bokeh.layouts import column
+from bokeh.models import ColumnDataSource, HoverTool, CheckboxGroup, CustomJS, Panel, Tabs, Slider, Row, FactorRange
+from bokeh.transform import dodge, factor_cmap
+from bokeh.layouts import row, column, widgetbox
+from bokeh.palettes import Viridis3, Spectral5
+from bokeh.models.widgets import CheckboxGroup, RadioGroup
+
 output_notebook()
 ```
+
+## [Part 1] The Daily Additional Number in Indonesia
+
+##### Author:
+- Taufik Fathurahman (1301160790)
+
+Akan dilakukan visalisasi dari pertambahan kasus COVID-19 perhari di Indonesia selama kurun waktu dua bulan, yaitu Maret sampai bulan April sekarang. Program akan memvisualisasikana kasus yang terkonfirmasi, kasus kematian, dan kasus sembuh. Visualisasi dibuat interaktif dengan menggunakan bantuan Library Bokeh.
 
 #### Handle Dataset
 
@@ -94,7 +112,7 @@ def create_dataset(df):
 
 Ketika semua data sudah siap, selanjutnya adalah mekaukan visualisasi dengan lirary bokeh. Akan ada beberapa visualisasi yang dibuat agar dapat mempermudah memahami isi dan mendapatkan informasi dari dataset daily additional number in Indonesia.
 
-##### a. Overall Dataset Visualization
+##### A. Overall Dataset Visualization
 
 Akan dilakukan visualisasi data secara keseluruhan mulai dari data bulan Maret sampai dengan April, dimana didalamnya akan memuat jumlah kasus baru, jumlah kasus sembuh, jumlah kasuk meninggal, dan jumlah secara kumulatif dari kasus yang ada.
 
@@ -205,52 +223,15 @@ def visual_addoffset():
  
 ## [Part 2] COVID19 Visualization in Every Region in Indonesia
 
+#### Author :
+- Farhan Alfariqi (1301161770)
+
 COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
-
-### Getting Started
-
-Berikut ini merupakan instruksi dasar yang diperlukan untuk menjalankan program Visualisasi COVID19 di Tiap Daerah Indonesia dengan menggunakan Bokeh Library
-
-#### Prerequisites
-
-Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
-
-```python
- pip install numpy
- pip install pandas
- pip install geopandas
-```
-
-#### Installing
-
-Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks editor (Jupyter Notebook) :
-
-```python
- import numpy as np
- import pandas as pd
-```
-
-Selain itu juga, tambahkan beberapa extension dari library Bokeh seperti berikut:
-
-```python
-from bokeh.plotting import figure, show
-from bokeh.io import output_notebook
-from bokeh.models.tools import HoverTool
-from bokeh.models import ColumnDataSource
-from bokeh.transform import dodge
-from bokeh.models import Panel, Tabs
-
-output_notebook()
-```
 
 Langkah selanjutnya yaitu me-load dataset dengan cara berikut:
 ```python
 df_provinsi   = pd.read_csv('https://raw.githubusercontent.com/farhanalfaa/covid19-visualization/master/dataset/Indo/data%20provinsi.csv')
 ```
-
-### Running the tests
-
-Berikut ini merupakan potongan source code untuk memudahkan memahami penjelasan mengenai tiap code yang diberikan
 
 #### Bokeh All Province Visualization
 
@@ -365,7 +346,7 @@ show(tabs)
 
 ### Geopandas Visualization
 
-**Load Indonesia Geospatil Dataset**
+**Load Indonesia Geospatial Dataset**
 ```python
 import geopandas as gpd
 
@@ -437,54 +418,24 @@ for idx, row in df_join.iterrows():
 ![Geopandas Region Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/geopandas_region_province_with_label.PNG)
 
 ## [Part 3] Visualisasi Covid-19 Pada Wilayah Association of Southeast Asian Nations (ASEAN)
-COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (26 April 2020) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
 
-### Getting Started
+#### Author :
+- Fikhri Masri (1301164662)
+
+COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (26 April 2020) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
 
 #### Visualisasi
 Data Visualisasi adalah teknik menyajikan data secara visual melalui grafik, chart , peta agar tampilan menarik namun tetap informatif. Alasan ada nya data visualisasi adalah tidak lepas dari "kebosanan" dan "monoton" apabila data disajikan dalam bentuk baris dan kolom seperti dalam tabel tabel. Pada Kasus Covid-19 ASEAN Menampilkan Visualisasi:
-1. Visualisasi kasus perwaktu dari Negara ASEAN
-2. Visualisasi jumlah Kasus, Sembuh, dan Meninggal
-3. Visualisasi rentang umur yang terkena Covid-19 di salah satu negara ASEAN (Indonesia)
 
-#### Built With
+**1. Visualisasi Kasus Perwaktu Dari Negara ASEAN**
 
-* [Bokeh 2.0.2](https://docs.bokeh.org/)
+**2. Visualisasi Jumlah Kasus, Sembuh, dan Meninggal**
 
-#### Prerequisites
-
-Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
-```python
- pip install numpy
- pip install pandas
- pip install bokeh
-```
-#### Installing
-
-Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks editor (Jupyter Notebook) :
-```
-from bokeh.plotting import figure, show
-from bokeh.io import output_file, output_notebook
-from bokeh.models.tools import HoverTool
-from bokeh.models import ColumnDataSource
-from bokeh.layouts import column
-import numpy as np
-from bokeh.layouts import row
-from bokeh.palettes import Viridis3
-from bokeh.plotting import figure
-from bokeh.models import FactorRange
-from bokeh.palettes import Spectral5
-from bokeh.models import CheckboxGroup, CustomJS, Panel, Tabs, Row
-from bokeh.transform import dodge
-from bokeh.models.widgets import CheckboxGroup, RadioGroup
-from bokeh.transform import factor_cmap
-from bokeh.layouts import widgetbox
-%matplotlib inline
-import pandas as pd
-import numpy as np
-```
+**3. Visualisasi Rentang Umur yang Terkena COVID19 di Salah Satu Negara ASEAN (Indonesia)**
 
 #### Visualisasi Negara ASEAN yang diambil dari tanggal (24-Jan-2020 - 26-Apr-2020)
+
+#### COVID19 Visualization in the Association of Southeast Asian Nations (ASEAN) Region
 
 ```python
 p = figure(x_axis_type="datetime", plot_width=1000, plot_height=450, title = 'Kasus ASEAN Time Series')
