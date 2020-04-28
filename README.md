@@ -1,15 +1,26 @@
 ﻿> Online README link : https://github.com/farhanalfaa/covid19-visualization/blob/master/README.md
  
-##### Author:
+ > Youtube URL : https://youtu.be/Fu8-fDwqXco
+ 
+ > Google Colab URL : https://github.com/farhanalfaa/covid19-visualization/blob/master/program/Tugas%20Besar%20Visualisasi%20Data.ipynb
+ 
+#### Author:
 - Taufik Fathurahman (1301160790)
 - Farhan Alfariqi (1301161770)
 - Fikhri Masri (1301164662)
 
 # COVID19 Visualization using Bokeh Library
 
-COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. 
+COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. Informasi mengenai  Persebaran Pasien Penderita COVID19 sangatlah diperlukan pada saat ini. Salah satunya untuk mengantisipasi lonjakan penderita secara masif. Oleh karena itu, Program yang akan dibangun ini diharapkan dapat membantu pengguna untuk memahami persebaran COVID19 baik untuk wilayah ASEAN, maupun Tiap-tiap Provinsi di Indonesia. Dengan bantuan **Bokeh Library**, proses visualisasi data penderita COVID19 dapat diinterpretasikan lebih interaktif dan dapat dipahami oleh pengguna dengan baik.
 
-### Getting Started
+Program ini akan memanfaatkan fitur-fitur yang tersedia pada **Bokeh Library** untuk memaksimalkan visualisasi data yang didapatkan, serta dengan tambahan fitur dari **Geopandas Library** diharapkan dapat memudahkan pengguna untuk melihat persebaran penderita melalui suatu Data Geospasial
+
+## Built With
+
+* [Bokeh 2.0.2](https://docs.bokeh.org/)
+* [Geopandas 0.7.0](https://geopandas.org/)
+
+## Getting Started
 
 Berikut ini merupakan rangkaian program yang menampilkan persebaran kasus COVID19 di Indonesia berdasarkan beragam kategori dengan menggunakan Bokeh Library untuk memudahkan proses visualisasi data. Rangkaian program tersebut akan membahas berikut :
 
@@ -19,7 +30,7 @@ Berikut ini merupakan rangkaian program yang menampilkan persebaran kasus COVID1
 
 **3. [Part 3] Jumlah Persebaran Penderita COVID19 dalam skala ASEAN**
 
-#### Prerequisites
+### Prerequisites
 
 Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
 
@@ -29,18 +40,14 @@ Langkah utama yaitu menginstall library yang diperlukan, seperti berikut:
  pip install geopandas
 ```
 
-#### Built With
-
-* [Bokeh 2.0.2](https://docs.bokeh.org/)
-* [Geopandas 0.7.0](https://geopandas.org/)
-
-#### Installing
+### Installing
 
 Langkah selanjutnya yaitu mengimport library yang telah diinstal kedalam teks editor (Jupyter Notebook) :
 
 ```python
 import numpy as np
 import pandas as pd
+import geopandas as gpd
 
 from bokeh.plotting import figure, show, Figure
 from bokeh.io import output_notebook
@@ -55,12 +62,12 @@ output_notebook()
 
 ## [Part 1] The Daily Additional Number in Indonesia
 
-##### Author:
+#### Author:
 - Taufik Fathurahman (1301160790)
 
-Akan dilakukan visalisasi dari pertambahan kasus COVID-19 perhari di Indonesia selama kurun waktu dua bulan, yaitu Maret sampai bulan April sekarang. Program akan memvisualisasikana kasus yang terkonfirmasi, kasus kematian, dan kasus sembuh. Visualisasi dibuat interaktif dengan menggunakan bantuan Library Bokeh.
+Akan dilakukan visualisasi dari pertambahan kasus COVID-19 perhari di Indonesia selama kurun waktu dua bulan, yaitu Maret sampai bulan April sekarang. Program akan memvisualisasikana kasus yang terkonfirmasi, kasus kematian, dan kasus sembuh. Visualisasi dibuat interaktif dengan menggunakan bantuan Library Bokeh.
 
-#### Handle Dataset
+## Handle Dataset
 
 Langkah pertama adalah dengan memuat dataset yang akan divisualisasikan.
 
@@ -108,11 +115,11 @@ def create_dataset(df):
     return source_maret_kasus, source_april_kasus, source_overall
 ```
 
-#### 3. COVID-19 Trend Visualization
+## COVID-19 Trend Visualization
 
 Ketika semua data sudah siap, selanjutnya adalah mekaukan visualisasi dengan lirary bokeh. Akan ada beberapa visualisasi yang dibuat agar dapat mempermudah memahami isi dan mendapatkan informasi dari dataset daily additional number in Indonesia.
 
-##### A. Overall Dataset Visualization
+### A. Overall Dataset Visualization
 
 Akan dilakukan visualisasi data secara keseluruhan mulai dari data bulan Maret sampai dengan April, dimana didalamnya akan memuat jumlah kasus baru, jumlah kasus sembuh, jumlah kasuk meninggal, dan jumlah secara kumulatif dari kasus yang ada.
 
@@ -169,7 +176,7 @@ def visual_overall_tren(source, bulan='Overall'):
 
 ```
 
-##### B. Each Month Dataset Visualization
+### B. Each Month Dataset Visualization
 
 Agar lebih mudah dilihat, selanjutnya dataset akan divisualisasikan berdasarkan bulannya dengan bantuan widget Tab.
 
@@ -190,7 +197,7 @@ def visual_eachmonth():
     show(tabs)
 ```
 
-##### C. Add Offset into Dataset
+### C. Add Offset into Dataset
 
 Disini akan dicoba bagaimana bila ada tamahan kedalam dataset, yaitu dengan menambahkan offset dengan bantuan widget slider.
 
@@ -223,17 +230,19 @@ def visual_addoffset():
  
 ## [Part 2] COVID19 Visualization in Every Region in Indonesia
 
+Akan dilakukan visualisasi jumlah persebaran Penderita COVID19 pada tiap Provinsi di Indonesia yang melibatkan setidaknya 34 provinsi. Visualisasi nantinya akan ditampilkan dalam bentuk Data Geospasial yang memperlihatkan Wilayah Indonesia beserta Informasi mengenai rasio kematian yang diakibatkan oleh COVID19 dengan bantuan **Geopandas Library**
+
 #### Author :
 - Farhan Alfariqi (1301161770)
 
-COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (28 April 2020 Pukul 14:35) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
+### Handle Dataset
 
 Langkah selanjutnya yaitu me-load dataset dengan cara berikut:
 ```python
 df_provinsi   = pd.read_csv('https://raw.githubusercontent.com/farhanalfaa/covid19-visualization/master/dataset/Indo/data%20provinsi.csv')
 ```
 
-#### Bokeh All Province Visualization
+### Bokeh All Province Visualization
 
 **Convert into Dictionary**
 
@@ -295,7 +304,7 @@ show(p)
 
 ![Bokeh Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/bokeh_province.PNG)
 
-#### Bokeh Region Visualization using Panel Tabs Widget
+### Bokeh Region Visualization using Panel Tabs Widget
 
 **Slicing Dataset into Region Based On Location**
 ```python
@@ -417,14 +426,13 @@ for idx, row in df_join.iterrows():
 
 ![Geopandas Region Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/geopandas_region_province_with_label.PNG)
 
-## [Part 3] Visualisasi Covid-19 Pada Wilayah Association of Southeast Asian Nations (ASEAN)
+## [Part 3] COVID19 Visualization in the Association of Southeast Asian Nations (ASEAN) Region
 
 #### Author :
 - Fikhri Masri (1301164662)
 
-COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak sedikit korban jiwa berjatuhan akibatnya virus tersebut. Tak terkecuali Indonesia, hingga saat ini (26 April 2020) telah terindikasi positif sekitar 9.096 jiwa. Berikut ini merupakan program yang menampilkan persebaran kasus COVID19 di Indonesia dengan menggunakan library Bokeh yang bermanfaat dalam menampilkan visualisasi dengan cara lebih interaktif.
+### Explanation
 
-#### Visualisasi
 Data Visualisasi adalah teknik menyajikan data secara visual melalui grafik, chart , peta agar tampilan menarik namun tetap informatif. Alasan ada nya data visualisasi adalah tidak lepas dari "kebosanan" dan "monoton" apabila data disajikan dalam bentuk baris dan kolom seperti dalam tabel tabel. Pada Kasus Covid-19 ASEAN Menampilkan Visualisasi:
 
 **1. Visualisasi Kasus Perwaktu Dari Negara ASEAN**
@@ -433,10 +441,9 @@ Data Visualisasi adalah teknik menyajikan data secara visual melalui grafik, cha
 
 **3. Visualisasi Rentang Umur yang Terkena COVID19 di Salah Satu Negara ASEAN (Indonesia)**
 
-#### Visualisasi Negara ASEAN yang diambil dari tanggal (24-Jan-2020 - 26-Apr-2020)
+### Visualisasi Negara ASEAN yang diambil dari tanggal (24-Jan-2020 - 26-Apr-2020)
 
-#### COVID19 Visualization in the Association of Southeast Asian Nations (ASEAN) Region
-
+**Setup Line Glyphs**
 ```python
 p = figure(x_axis_type="datetime", plot_width=1000, plot_height=450, title = 'Kasus ASEAN Time Series')
 props = dict(line_width=4, line_alpha=0.7)
@@ -449,6 +456,11 @@ phil = p.line(df_phil['Time'], df_phil['Cases'],color='darkred', legend_label="P
 laos = p.line(df_laos['Time'], df_laos['Cases'],color='blue', legend_label="Laos", **props)
 malay = p.line(df_malay['Time'], df_malay['Cases'],color='gold', legend_label="Malaysia", **props)
 p.legend.location = "top_left"
+```
+
+**Setup CheckBox Configuration**
+
+```python
 checkbox = CheckboxGroup(labels=["Indonesia", "Singapore", "Thailand", "Cambodia", "Vietnam", "Phillipines", "Laos", "Malaysia"],
                          active=[0, 1, 2, 3, 4, 5, 6, 7], width=100)
 checkbox.callback = CustomJS(args=dict(indo=indo, singa=singa, thai=thai, camb=camb, viet=viet, phil=phil, laos= laos, malay=malay,checkbox=checkbox),
@@ -463,7 +475,11 @@ checkbox.callback = CustomJS(args=dict(indo=indo, singa=singa, thai=thai, camb=c
                                   malay.visible = 7 in checkbox.active;
                                   """)
 tab1 = Panel(child = p, title = 'Kasus Perhari')
+```
 
+**Setup vbar Glyphs**
+
+```python
 source = ColumnDataSource(df_kumulatif_asean)
 countries = source.data['Country/Region'].tolist()
 plot = figure(x_range=countries, plot_height=500, plot_width=1000, title="Jumlah Kasus di ASEAN")
@@ -472,6 +488,11 @@ plot.xgrid.grid_line_color = None
 plot.xaxis.axis_label = 'Country'
 plot.yaxis.axis_label = 'Jumlah'
 plot.y_range.start = 0
+```
+
+**Add Hover Tools**
+
+```python
 hover = HoverTool()
 hover.tooltips = [
     ("Jumlah Kasus", "@Cases Orang")]
@@ -482,18 +503,28 @@ plot.add_tools(hover)
 tab2 = Panel(child = plot, title = 'Kumulatif Kasus')
 
 tabs = Tabs(tabs=[ tab1, tab2 ])
+```
 
+**Display Visualization**
 
+```python
 layout = row(checkbox,tabs)
 show(layout)
 ```
-**Display Visualization**
+
 ![Bokeh Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/line%20Asean.PNG)
 ![Bokeh Visualization1](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/Jumlah%20Cases%20Kumulatif%20ASEAN.png)
 
 #### Visualisasi Jumlah Kasus, Sembuh, dan Meninggal 
-```source = ColumnDataSource(data=data)
+
+```python
+source = ColumnDataSource(data=data)
 country = source.data['country']
+```
+
+**Setup vbar Glyphs**
+
+```python
 p = figure(x_range=country, y_range=(0, 15000), plot_height=500, plot_width=2000, title="Data Covid-19 ASEAN", toolbar_location="left")
 
 p.vbar(x=dodge('country', -0.25, range=p.x_range), top='Kasus', width=0.2, source=source,
@@ -504,7 +535,11 @@ p.vbar(x=dodge('country',  0.0,  range=p.x_range), top='Sembuh', width=0.2, sour
 
 p.vbar(x=dodge('country',  0.25, range=p.x_range), top='Meninggal', width=0.2, source=source,
        color="#e84d60", legend_label="Meninggal")
+```
 
+**Setup Style Visualization**
+
+```python
 p.x_range.range_padding = 0.01
 p.xgrid.grid_line_color = None
 p.legend.location = "top_left"
@@ -513,6 +548,11 @@ p.legend.orientation = "horizontal"
 # Tick labels
 p.xaxis.major_label_text_font_size = '20pt'
 p.yaxis.major_label_text_font_size = '20pt'
+```
+
+**Add Hover Tools**
+
+```python
 hover = HoverTool()
 hover.tooltips = [
     ("Jumlah Kasus", "@Kasus Pasien"),
@@ -528,7 +568,11 @@ kasuss = ['Kasus', 'Sembuh', 'Meninggal']
 plot = figure(x_range=country_1, y_range=(0, 15000), plot_height=700, plot_width=1000, title="Data Covid-19 ASEAN", toolbar_location="left", tooltips="$name: @$name")
 plot.vbar_stack(kasuss, x='country', width=0.9, color=colors, source=data,
              legend_label=kasuss)
+```
 
+**Setup Style Visualization**
+
+```python
 plot.y_range.start = 0
 plot.x_range.range_padding = 0.1
 plot.xgrid.grid_line_color = None
@@ -546,6 +590,7 @@ layout = row(tabs)
 show(layout)
 ```
 **Display Visualization**
+
 ![Bokeh Visualization2](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/StackBarplot.png)
 ![Bokeh Visualization3](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/barplot%20ASEAN.png)
 
@@ -566,20 +611,22 @@ hover.tooltips = [
     ("Jumlah Kasus", "@JumlahKasus Pasien")]
 
 hover.mode = 'vline'
+
 output_file("4.html")
 p.add_tools(hover)
-
 show(p)
 ```
+
 **Display Visualization**
+
 ![Bokeh Visualization4](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/Usiaindo.png)
 
-### Contributing
- - [**Taufik Fathurrahman**](https://github.com/taufikfathurahman)
+## Contributing
+ - [**Taufik Fathurahman**](https://github.com/taufikfathurahman)
  - [**Farhan Alfariqi**](https://github.com/farhanalfaa)
  - [**Fikhri Masri**](https://github.com/fikhrimasri)
   
- ### Authors
+ ## Authors
  
  - **Taufik Fathurahman**
  - **Farhan Alfariqi**
