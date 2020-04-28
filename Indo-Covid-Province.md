@@ -230,6 +230,8 @@ for idx, row in df_join.iterrows():
                  color='black')
 ```
 
+![Geopandas Region Visualization](https://github.com/farhanalfaa/covid19-visualization/blob/master/images/geopandas_region_province_with_label.PNG)
+
 ## Contributing
  - [**Taufik Fathurrahman**](https://github.com/taufikfathurahman)
  - [**Fikhri Masri**](https://github.com/fikhrimasri)
