@@ -5,7 +5,7 @@ COVID19 merupakan fenomena besar yang sedang melanda dunia secara global. Tak se
 
 ### Visualisasi
 Data Visualisasi adalah teknik menyajikan data secara visual melalui grafik, chart , peta agar tampilan menarik namun tetap informatif. Alasan ada nya data visualisasi adalah tidak lepas dari "kebosanan" dan "monoton" apabila data disajikan dalam bentuk baris dan kolom seperti dalam tabel tabel. Pada Kasus Covid-19 ASEAN Menampilkan Visualisasi:
-1. Visualisasi kasus perwaktu dari Negara AsEAN
+1. Visualisasi kasus perwaktu dari Negara ASEAN
 2. Visualisasi jumlah Kasus, Sembuh, dan Meninggal
 3. Visualisasi rentang umur yang terkena Covid-19 di salah satu negara ASEAN (Indonesia)
 
